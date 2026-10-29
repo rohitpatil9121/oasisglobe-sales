@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+/* Dub system: paper-mist canvas, near-black text, Inter throughout. White,
+   border-defined cards sit on this neutral page background. */
+body { @apply bg-paper text-ink antialiased font-sans; }
+
+/* subtle fade-in for modals / page content */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.animate-in { animation: fadeIn 0.15s ease-out; }
+
+/* Phones: a field smaller than 16px makes iOS Safari zoom the whole page the
+   moment it is focused, and it never zooms back — the office ends up pinching
+   its way around the dashboard after every search. Sizing is left to the
+   components above this width. */
+@media (max-width: 640px) {
+  /* !important because a Tailwind size class (text-xs, text-sm) is a class
+     selector and beats a bare element rule — without it every field styled that
+     way keeps its 12-14px and iOS keeps zooming. Above 640px this rule does not
+     exist, so the desktop sizing is untouched. */
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Phones: a floor under every interactive thing.
+
+   The dashboard was built for a desk, where a 32px button is a fine target for
+   a mouse pointer that lands where you tell it. A thumb is roughly 44px wide and
+   lands approximately, so the same button on a phone is a guess. Rather than
+   chase every control one by one — and miss the next one somebody adds — the
+   floor lives here, applies below 640px only, and leaves the desktop sizing
+   exactly as it was.
+
+   `min-height` and not `height`: a control taller than the floor (a textarea
+   someone has typed into, a wrapped chip) keeps its own size. Links are left
+   out; a link inside a sentence must not become a 44px block in the middle of a
+   paragraph. Standalone links that need the floor carry it themselves. */
+@media (max-width: 640px) {
+  button,
+  [role="tab"],
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  /* Icon-only controls need the width too, or they stay a sliver. */
+  button:not(:has(> :not(svg))) {
+    min-width: 44px;
+  }
+}
+
+/* Tables as cards on a phone — see lib/stackTables.js, which names each cell
+   after its column (data-label). One card per row; inside it each cell is a
+   line: the column name on the left, the value on the right. Nothing scrolls
+   sideways. The header row goes, since every line now carries its own name. */
+@media (max-width: 639px) {
+  table.stack,
+  table.stack > tbody,
+  table.stack > tfoot {
+    display: block;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  table.stack > thead {
+    display: none;
+  }
+  table.stack > tbody > tr,
+  table.stack > tfoot > tr {
+    display: block;
+    padding: 0.625rem 0.875rem;
+  }
+  table.stack > tbody > tr > td,
+  table.stack > tfoot > tr > td {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 0.25rem 0.75rem;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0.2rem 0 !important;
+    text-align: right;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  table.stack > tbody > tr > td > *,
+  table.stack > tfoot > tr > td > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  table.stack > tbody > tr > td::before {
+    content: attr(data-label);
+    margin-right: auto;
+    flex: none;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    text-align: left;
+  }
+  /* A cell with no column name (row actions, an opened row) takes the full line. */
+  table.stack > tbody > tr > td[data-label=""]::before {
+    content: none;
+  }
+  table.stack > tbody > tr > td[data-label=""][colspan] {
+    display: block;
+    text-align: left;
+  }
+  /* The 44px touch floor above would make every line of a card that tall; a
+     card is already a big target, so its inline controls sit a little tighter. */
+  table.stack > tbody > tr > td button,
+  table.stack > tbody > tr > td select,
+  table.stack > tbody > tr > td input:not([type="checkbox"]):not([type="radio"]) {
+    min-height: 32px;
+  }
+  table.stack > tbody > tr > td:empty {
+    display: none;
+  }
+}

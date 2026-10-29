@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 # Rebuild the Android APK for the sales app.
-# Usage:  bash build-apk.sh [API_BASE]
-#   API_BASE — backend URL baked into the build (default: PC LAN IP below).
-#   For live mode the phone must reach this URL; Demo Login always works offline.
+# Usage:  bash build-apk.sh API_BASE
+#   API_BASE — the sales backend URL baked into the build (required).
 set -e
 cd "$(dirname "$0")"
 
-# Default to the live Render backend. It used to default to a LAN IP, which
-# produced APKs that only worked on one home network — pass a URL explicitly to
-# build against a local server instead.
-API_BASE="${1:-https://oasis-service-automation.onrender.com}"
+API_BASE="${1:?Pass the sales backend URL, e.g. https://oasis-sales.onrender.com}"
 # Toolchain lives on D: — a self-contained JDK 17 + Android SDK, not a system
 # install, so nothing here depends on Android Studio being present.
 # AGP 8.2.1 requires JDK 17 specifically; 21 will not build this project.
@@ -28,4 +24,4 @@ echo "Assembling debug APK ..."
 ( cd android && ./gradlew assembleDebug --no-daemon )
 
 cp android/app/build/outputs/apk/debug/app-debug.apk Oasis-Sales.apk
-echo "Done -> sales-app/Oasis-Sales.apk"
+echo "Done -> sales/app/Oasis-Sales.apk"

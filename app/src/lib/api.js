@@ -4,7 +4,7 @@
 const TOKEN_KEY = "sales_token";
 
 // Empty in dev (Vite proxies /api → :3000). For the APK set VITE_API_BASE to
-// https://oasis-service-automation.onrender.com
+// the sales backend URL (see sales/README.md)
 const BASE = import.meta.env.VITE_API_BASE || "";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);

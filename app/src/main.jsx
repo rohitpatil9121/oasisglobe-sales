@@ -8,7 +8,8 @@ import "./index.css";
 /* Browser demo: ?demo=1 swaps the backend for an in-memory stub so the app is
    walkable without a server. Dev builds only — Rollup drops it from the APK. */
 const DEMO_KEY = "og-sales-demo";
-let wantsDemo = false;
+// VITE_DEMO=1 makes a build that always runs on sample data (the HTML file sent to clients).
+let wantsDemo = import.meta.env.VITE_DEMO === "1";
 if (import.meta.env.DEV) {
   if (location.search.includes("demo=0")) localStorage.removeItem(DEMO_KEY);
   else if (location.search.includes("demo=1")) localStorage.setItem(DEMO_KEY, "1");

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import logoUrl from "../assets/logo.png";
 
 // Small, dependency-free UI primitives shared across the dashboard so styling
 // stays consistent. Tailwind utility classes under the hood.
@@ -11,7 +12,7 @@ export function Logo({ className = "h-9", badge = "h-9 w-9 rounded-xl text-sm" }
   const [ok, setOk] = useState(true);
   if (!ok)
     return <span className={`flex items-center justify-center bg-brand font-extrabold text-white ${badge}`}>OG</span>;
-  return <img src="/logo.png" alt="Oasis Globe" className={`w-auto object-contain ${className}`} onError={() => setOk(false)} />;
+  return <img src={logoUrl} alt="Oasis Globe" className={`w-auto object-contain ${className}`} onError={() => setOk(false)} />;
 }
 
 // ---------- Icons (inline SVG, currentColor) ----------

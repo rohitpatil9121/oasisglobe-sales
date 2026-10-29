@@ -6,6 +6,7 @@ import { istToday, addDays, dayLabel, timeAgo, rupeeAmt } from "../lib/format.js
 import { LEAD_STEPS, LEAD_META, isOpen } from "../lib/status.js";
 import { products } from "../data/catalog.js";
 import ScreenHeader, { Chips } from "../components/ScreenHeader.jsx";
+import CustomBuilder from "../components/CustomBuilder.jsx";
 import { Card, FLabel, Icon, MSheet, PrimaryButton, GhostButton, PlusMinus, StatusPill, Skeleton, cx, input } from "../components/ui.jsx";
 
 const LOST_REASONS = ["Price zyada", "Dusri company se liya", "Abhi nahi chahiye", "Phone nahi uthaya"];
@@ -166,6 +167,7 @@ function QuoteSheet({ lead, onClose, onDone }) {
   const [q, setQ] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [building, setBuilding] = useState(false);
   const gross = items.reduce((s, i) => s + i.mrp * i.qty, 0);
   const add = (p) => setItems((xs) => xs.some((x) => x.model === p.name) ? xs : [...xs, { model: p.name, mrp: p.mrp, qty: 1 }]);
   const setQty = (k, d) => setItems((xs) => xs.flatMap((x, i) => i !== k ? [x] : x.qty + d <= 0 ? [] : [{ ...x, qty: x.qty + d }]));
@@ -195,6 +197,12 @@ function QuoteSheet({ lead, onClose, onDone }) {
           <PlusMinus value={discount} onDelta={(d) => setDiscount((v) => Math.max(0, Math.min(gross, v + d)))} onInput={(v) => setDiscount(Math.max(0, Math.min(gross, v)))} step={500} max={gross} format={rupeeAmt} wide />
         </div>
       )}
+      <button type="button" onClick={() => setBuilding(true)}
+        className="mb-3 flex min-h-[52px] w-full items-center gap-3 rounded-xl border-2 border-dashed border-brand/40 bg-brand-tint/40 px-3 text-left">
+        <Icon.wrench width={20} height={20} className="text-brand" />
+        <span className="flex-1"><b className="text-strong">Customize karo</b><span className="block text-xs text-muted">Body aur andar ke parts apne hisaab se</span></span>
+        <Icon.chevron width={18} height={18} className="text-muted" />
+      </button>
       <input className={input} placeholder="Product dhundo" value={q} onChange={(e) => setQ(e.target.value)} />
       <div className="mt-2 max-h-[38vh] space-y-1 overflow-y-auto">
         {list.map((p) => (
@@ -206,6 +214,7 @@ function QuoteSheet({ lead, onClose, onDone }) {
         ))}
       </div>
       {err && <p className="mt-2 text-sm text-danger-fg">{err}</p>}
+      {building && <CustomBuilder onClose={() => setBuilding(false)} onDone={(item) => { setItems((xs) => [...xs, item]); setBuilding(false); }} />}
     </MSheet>
   );
 }

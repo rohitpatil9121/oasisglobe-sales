@@ -1,0 +1,234 @@
+{
+  "sample": true,
+  "designs": [
+    {
+      "id": "wall",
+      "name": "Wall model",
+      "price": 8500,
+      "image": "/images/custom-wall.jpg",
+      "note": "Fixed on the kitchen wall. 9 litre tank."
+    },
+    {
+      "id": "under",
+      "name": "Under the sink",
+      "price": 11000,
+      "image": "/images/custom-under.jpg",
+      "note": "Hidden inside the cabinet. Only a tap on top. 7 litre tank."
+    }
+  ],
+  "tanks": [
+    {
+      "id": "detachable",
+      "name": "Detachable tank"
+    },
+    {
+      "id": "fixed",
+      "name": "Not detachable tank"
+    },
+    {
+      "id": "none",
+      "name": "Without tank"
+    }
+  ],
+  "cabinets": [
+    {
+      "id": "black-copper-digital",
+      "name": "Black Copper Digital",
+      "image": "/images/cabinets/black-copper-digital.jpg",
+      "tank": "fixed"
+    },
+    {
+      "id": "black-gold-copper",
+      "name": "Black Gold Copper",
+      "image": "/images/cabinets/black-gold-copper.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "teal-black",
+      "name": "Teal Black",
+      "image": "/images/cabinets/teal-black.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "white-gold-curve",
+      "name": "White Gold Curve",
+      "image": "/images/cabinets/white-gold-curve.jpg",
+      "tank": "fixed"
+    },
+    {
+      "id": "black-wave",
+      "name": "Black Wave",
+      "image": "/images/cabinets/black-wave.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "black-transparent",
+      "name": "Black Transparent",
+      "image": "/images/cabinets/black-transparent.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "white-blue-gold",
+      "name": "White Blue Gold",
+      "image": "/images/cabinets/white-blue-gold.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "blue-transparent",
+      "name": "Blue Transparent",
+      "image": "/images/cabinets/blue-transparent.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "aqua-transparent",
+      "name": "Aqua Transparent",
+      "image": "/images/cabinets/aqua-transparent.jpg",
+      "tank": "detachable"
+    },
+    {
+      "id": "navy-hot-cold",
+      "name": "Navy Hot & Cold",
+      "image": "/images/cabinets/navy-hot-cold.jpg",
+      "tank": "fixed"
+    },
+    {
+      "id": "marble-gray-brown",
+      "name": "Marble Gray Brown",
+      "image": "/images/cabinets/marble-gray-brown.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "blue-granite",
+      "name": "Blue Granite",
+      "image": "/images/cabinets/blue-granite.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "white-fonix",
+      "name": "White Fonix",
+      "image": "/images/cabinets/white-fonix.jpg",
+      "tank": "fixed"
+    },
+    {
+      "id": "graphite-silver",
+      "name": "Graphite Silver",
+      "image": "/images/cabinets/graphite-silver.jpg",
+      "tank": "fixed"
+    },
+    {
+      "id": "lavender",
+      "name": "Lavender",
+      "image": "/images/cabinets/lavender.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "marble-design",
+      "name": "Marble Design",
+      "image": "/images/cabinets/marble-design.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "marble-brown",
+      "name": "Marble Brown",
+      "image": "/images/cabinets/marble-brown.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "white-gold-wave",
+      "name": "White Gold Wave",
+      "image": "/images/cabinets/white-gold-wave.jpg",
+      "tank": "none"
+    },
+    {
+      "id": "blue-transparent-white-tap",
+      "name": "Blue Transparent 2",
+      "image": "/images/cabinets/blue-transparent-white-tap.jpg",
+      "tank": "detachable"
+    }
+  ],
+  "filters": [
+    {
+      "id": "pre",
+      "name": "Pre-filter",
+      "stage": "Pre-filter",
+      "note": "5–10 micron",
+      "info": "Stops sand, mud and rust before the water goes into the purifier."
+    },
+    {
+      "id": "sediment",
+      "name": "Sediment",
+      "stage": "Sediment",
+      "note": "5 micron",
+      "info": "Removes fine dust and dirt. Keeps the RO membrane safe."
+    },
+    {
+      "id": "carbon",
+      "name": "Carbon",
+      "stage": "Carbon",
+      "note": "1100 IV",
+      "info": "Removes chlorine, bad taste and smell from the water."
+    },
+    {
+      "id": "ro",
+      "name": "RO",
+      "stage": "RO",
+      "note": "100 GPD membrane",
+      "info": "Compulsory for borewell, tanker or mixed water supply. Not required for corporation water."
+    },
+    {
+      "id": "uv",
+      "name": "UV",
+      "stage": "UV",
+      "note": "Philips 254 nm lamp",
+      "info": "Kills germs in the water — bacteria and viruses."
+    },
+    {
+      "id": "uf",
+      "name": "UF",
+      "stage": "UF",
+      "note": "UF membrane",
+      "info": "Removes fine particles and germs left in the water. Works without electricity."
+    }
+  ],
+  "included": [
+    "Copper-winding pump (100 GPD)",
+    "TDS controller",
+    "Fitting",
+    "Warranty"
+  ],
+  "groups": [
+    {
+      "title": "Extra filters",
+      "options": [
+        {
+          "id": "post_carbon",
+          "name": "Post carbon filter",
+          "stage": "Post carbon",
+          "note": "Makes the water taste better after the tank.",
+          "price": 600
+        },
+        {
+          "id": "alkaline",
+          "name": "Alkaline filter",
+          "stage": "Alkaline",
+          "note": "Makes the water less acidic.",
+          "price": 1300
+        },
+        {
+          "id": "copper_zinc",
+          "name": "Copper + Zinc filter",
+          "stage": "Copper+Zinc",
+          "note": "Adds copper and zinc to the water.",
+          "price": 1200
+        },
+        {
+          "id": "mineral",
+          "name": "Mineral filter",
+          "stage": "Mineral",
+          "note": "Adds good minerals back to the water.",
+          "price": 600
+        }
+      ]
+    }
+  ]
+}

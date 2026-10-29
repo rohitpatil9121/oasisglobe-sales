@@ -2,18 +2,27 @@ import { useState } from "react";
 import { products } from "../data/catalog.js";
 import { rupeeAmt } from "../lib/format.js";
 import { Icon, MSheet, cx, input } from "../components/ui.jsx";
+import CustomBuilder from "../components/CustomBuilder.jsx";
+import { designs } from "../data/custom.js";
 
 /* Product photos + MRP to show the customer on the phone. MRP only. */
 export default function Catalog() {
   const [q, setQ] = useState("");
   const [fam, setFam] = useState("");
   const [open, setOpen] = useState(null);
+  const [building, setBuilding] = useState(false);
   const families = [...new Set(products.map((p) => p.family))];
   const shown = products.filter((p) => (!fam || p.family === fam) && (!q || p.name.toLowerCase().includes(q.toLowerCase())));
 
   return (
     <div className="pt-5">
       <h1 className="text-[24px] font-extrabold tracking-tight text-strong">Catalog</h1>
+      <button type="button" onClick={() => setBuilding(true)}
+        className="mt-3 flex w-full items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-brand to-brand-dark p-3 text-left text-white shadow-card">
+        {designs[0]?.image && <img src={designs[0].image} alt="" className="h-16 w-16 rounded-xl object-cover" />}
+        <span className="flex-1"><b className="text-[17px]">Apna purifier banao</b><span className="block text-sm opacity-85">Body + andar ke parts, customer ki pasand se</span></span>
+        <Icon.chevron width={20} height={20} />
+      </button>
       <div className="relative mt-3">
         <Icon.search width={18} height={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-subtle" />
         <input className={cx(input, "pl-11")} placeholder="Model dhundo" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -37,6 +46,7 @@ export default function Catalog() {
           </button>
         ))}
       </div>
+      {building && <CustomBuilder onClose={() => setBuilding(false)} />}
       {open && (
         <MSheet title={open.name} onClose={() => setOpen(null)}>
           {open.image && <img src={open.image} alt="" className="mx-auto max-h-[40vh] object-contain" />}
